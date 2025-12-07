@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倉鼠人生實驗室 | Hamr Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3B82F6', // 科技藍
+                        dark: '#0F172A',  // 深藍黑背景
+                        card: '#1E293B',  // 卡片背景
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; }
+        .hero-bg {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-dark text-gray-100 antialiased">
+
+    <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur-sm border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold tracking-wider text-white">🐹 倉鼠人生實驗室</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#about" class="hover:text-brand px-3 py-2 rounded-md text-sm font-medium">關於鼠叔</a>
+                        <a href="#method" class="hover:text-brand px-3 py-2 rounded-md text-sm font-medium">翻身心法</a>
+                        <a href="#products" class="hover:text-brand px-3 py-2 rounded-md text-sm font-medium">工具產品</a>
+                        <a href="https://app.hamr-lab.com" target="_blank" class="bg-brand hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold transition">
+                            啟動戰情室 🚀
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-bg h-screen flex items-center justify-center text-center px-4">
+        <div class="max-w-4xl mx-auto" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                受夠了像倉鼠一樣<br>
+                <span class="text-brand">在滾輪上空轉窮忙？</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                我是鼠叔。幫你透過「量化投資」與「反思日記」，打造專屬的人生逆襲導航系統。
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#products" class="bg-brand hover:bg-blue-600 text-white text-lg px-8 py-4 rounded-lg font-bold shadow-lg shadow-blue-500/30 transition transform hover:-translate-y-1">
+                    加入白銀會員，啟動戰情室
+                </a>
+                <a href="#footer" class="border border-gray-400 hover:border-white text-gray-300 hover:text-white text-lg px-8 py-4 rounded-lg font-medium transition">
+                    免費訂閱《鼠辣觀點》📩
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-20 bg-dark">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="鼠叔工作照" class="rounded-2xl shadow-2xl opacity-80 hover:opacity-100 transition duration-500">
+                    <div class="absolute -bottom-6 -right-6 bg-brand p-6 rounded-xl shadow-xl hidden md:block">
+                        <p class="font-bold text-xl">"幫助你成功，<br>就會是我的成功。"</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-brand font-bold uppercase tracking-wide mb-2">About Me</h2>
+                    <h3 class="text-3xl font-bold mb-6">人生要能翻身，不外乎斜槓、創業、投資。</h3>
+                    <div class="space-y-4 text-gray-300 leading-relaxed">
+                        <p>我是鼠叔，喜歡研究各種反轉人生的方法。如果你人生卡關、找不到方向，那你來對地方了。</p>
+                        <p>閱讀能提高認知（因為你的問題一定有人寫進書裡）；日記能除錯（不知道問題就無法解決）；投資則是加速器（用指數與比特幣打出暴擊）。</p>
+                        <p class="font-bold text-white mt-4">在這裡，我們不談心靈雞湯，只談「底層邏輯」與「實戰工具」。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="method" class="py-20 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-16">改變人生最重要的三件事</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-card p-8 rounded-2xl hover:bg-gray-800 transition border border-gray-700">
+                    <div class="text-brand text-5xl mb-6"><i class="fas fa-book-open"></i></div>
+                    <h3 class="text-xl font-bold mb-4">閱讀：提高認知</h3>
+                    <p class="text-gray-400">想翻身就是出現問題，需要提高認知。閱讀是最快最簡單的方法。</p>
+                </div>
+                <div class="bg-card p-8 rounded-2xl hover:bg-gray-800 transition border border-gray-700">
+                    <div class="text-brand text-5xl mb-6"><i class="fas fa-pen-fancy"></i></div>
+                    <h3 class="text-xl font-bold mb-4">日記：自我覺察</h3>
+                    <p class="text-gray-400">寫日記、做記錄、反思自己。找出行為盲點，打造人生導航系統。</p>
+                </div>
+                <div class="bg-card p-8 rounded-2xl hover:bg-gray-800 transition border border-gray-700">
+                    <div class="text-brand text-5xl mb-6"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="text-xl font-bold mb-4">投資：財富加速</h3>
+                    <p class="text-gray-400">投資自己提高賺錢能力；投資市場獲得加速器。用簡單方法提早自由。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-20 bg-dark">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-16">您的專屬軍火庫</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-card rounded-2xl overflow-hidden shadow-xl border border-gray-700 flex flex-col">
+                    <div class="h-48 bg-gray-700 flex items-center justify-center">
+                        <span class="text-gray-500 text-lg">（此處放《日日見》書籍封面）</span>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-2">📖 《日日見》命運日記遊戲</h3>
+                        <p class="text-brand mb-4">3分鐘連用小日記</p>
+                        <p class="text-gray-400 mb-6 flex-1">七個步驟，打造人生專屬導航系統。讓新手能無痛寫日記，推廣連用日記的力量。</p>
+                        <a href="#" class="block w-full text-center border border-brand text-brand hover:bg-brand hover:text-white py-3 rounded-lg font-bold transition">
+                            購買書籍
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-card rounded-2xl overflow-hidden shadow-xl border border-blue-900/50 flex flex-col relative">
+                    <div class="absolute top-0 right-0 bg-red-500 text-white text-xs px-3 py-1 font-bold rounded-bl-lg">HOT</div>
+                    <div class="h-48 bg-gray-700 flex items-center justify-center overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1611974765270-ca1258634369?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="戰情室" class="w-full h-full object-cover opacity-50">
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-2">🐹 倉鼠量化戰情室</h3>
+                        <p class="text-brand mb-4">白銀會員專屬權益</p>
+                        <p class="text-gray-400 mb-6 flex-1">幫助大家找到適合自己的好策略。用 200MA 與量化數據，讓你在指數投資也能打出暴擊。</p>
+                        <a href="https://app.hamr-lab.com" class="block w-full text-center bg-brand hover:bg-blue-600 text-white py-3 rounded-lg font-bold transition">
+                            登入戰情室
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-900 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-10">最新內容產出</h2>
+            <div class="flex flex-col md:flex-row gap-8 justify-center">
+                <a href="#" class="flex-1 bg-card p-6 rounded-xl hover:translate-y-1 transition border border-gray-700">
+                    <i class="fas fa-microphone-alt text-4xl text-brand mb-4"></i>
+                    <h3 class="text-xl font-bold">Podcast 鼠辣觀點</h3>
+                    <p class="text-gray-400 text-sm mt-2">每週三、六更新。聊生活、也聊我的觀點。</p>
+                </a>
+                <a href="#" class="flex-1 bg-card p-6 rounded-xl hover:translate-y-1 transition border border-gray-700">
+                    <i class="fab fa-youtube text-4xl text-red-500 mb-4"></i>
+                    <h3 class="text-xl font-bold">倉鼠人生實驗室</h3>
+                    <p class="text-gray-400 text-sm mt-2">分享各種書評、投資心得與量化教學。</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="bg-black py-12 text-center">
+        <div class="max-w-2xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-4">準備好跳出倉鼠滾輪了嗎？</h2>
+            <p class="text-gray-400 mb-8">訂閱電子報，每週 10 分鐘，獲得我的最新觀點與投資提醒。</p>
+            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="輸入您的 Email" class="flex-1 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-brand">
+                <button class="bg-white text-dark font-bold px-6 py-3 rounded-lg hover:bg-gray-200 transition">立即訂閱</button>
+            </form>
+            <div class="mt-12 text-gray-600 text-sm">
+                &copy; 2025 倉鼠人生實驗室 Hamr Lab. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
