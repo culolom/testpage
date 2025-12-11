@@ -13,7 +13,7 @@
     <style>
         /* --- 1. 全局設定 --- */
         :root {
-            --primary: #00bfa5; /* 類似你官網的青色 */
+            --primary: #00bfa5;
             --primary-dark: #009688;
             --secondary: #2c3e50;
             --gold: #ffc107;
@@ -35,7 +35,7 @@
             line-height: 1.6;
         }
 
-        /* 導航列模擬 (讓它看起來像你的官網) */
+        /* 導航列 */
         .navbar {
             background: var(--white);
             padding: 15px 5%;
@@ -55,7 +55,7 @@
             padding: 0 20px;
         }
 
-        /* --- 2. Hero 區塊 (標題區) --- */
+        /* Hero 區塊 */
         .hero {
             text-align: center;
             padding: 80px 20px 60px;
@@ -88,7 +88,6 @@
             margin: 0 auto 40px;
         }
 
-        /* 按鈕美化 */
         .btn-group {
             display: flex;
             justify-content: center;
@@ -107,42 +106,79 @@
             gap: 8px;
         }
 
-        /* 主按鈕：青色漸層 */
         .btn-primary {
             background: linear-gradient(135deg, #00E5FF 0%, #00bfa5 100%);
             color: white;
             box-shadow: 0 8px 15px rgba(0, 191, 165, 0.3);
             border: none;
         }
-
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 12px 20px rgba(0, 191, 165, 0.4);
         }
 
-        /* 次要按鈕：白色 */
         .btn-secondary {
             background: white;
             color: #555;
             border: 2px solid #eee;
         }
-
         .btn-secondary:hover {
             border-color: var(--primary);
             color: var(--primary);
         }
 
-        /* --- 3. 圖表區塊 --- */
+        /* 圖表區塊 */
         .chart-section {
             padding: 60px 0;
             text-align: center;
         }
 
+        /* --- 新增：金色洞察卡片樣式 --- */
+        .insight-card {
+            background-color: #fffdf5; /* 極淡的金色背景 */
+            border-left: 5px solid #ffc107; /* 左側金邊框 */
+            border-radius: 8px;
+            padding: 30px 35px;
+            margin: 0 auto 40px auto; /* 下方留白 */
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.1);
+            text-align: left;
+            max-width: 800px; /* 限制寬度讓閱讀更舒服 */
+        }
+
+        .insight-title {
+            color: #d48806; /* 深金色文字 */
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .insight-text {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* 金色螢光筆效果 */
+        .highlight {
+            font-weight: bold;
+            color: #333;
+            background: linear-gradient(120deg, rgba(255, 193, 7, 0.3) 0%, rgba(255, 193, 7, 0.3) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 88%;
+            padding: 0 2px;
+        }
+
+        /* 圖表卡片 */
         .chart-card {
             background: var(--white);
             border-radius: var(--radius);
             padding: 40px;
-            box-shadow: var(--shadow-lg); /* 立體感來源 */
+            box-shadow: var(--shadow-lg);
             margin-top: 30px;
             position: relative;
             overflow: hidden;
@@ -170,7 +206,7 @@
         .text-gold { color: var(--gold); }
         .text-gray { color: #999; }
 
-        /* --- 4. 銷售卡片區 --- */
+        /* 銷售卡片區 */
         .pricing-section {
             padding: 0 0 100px;
         }
@@ -195,7 +231,7 @@
         .card:hover { transform: translateY(-5px); }
 
         .card.silver {
-            border: 2px solid var(--gold); /* 白銀會員加金框 */
+            border: 2px solid var(--gold);
             background: linear-gradient(to bottom, #fff, #fffcf0);
         }
 
@@ -221,11 +257,11 @@
         .btn-gold { background: var(--gold); color: #000; box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3); }
         .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4); }
 
-        /* RWD 適應手機 */
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
             .chart-container { height: 300px; }
             .card { padding: 30px 20px; }
+            .insight-card { padding: 25px 20px; }
         }
     </style>
 </head>
@@ -261,6 +297,27 @@
                 <p style="color: #666;">你知道這條藍線，其實還能進化成金線嗎？</p>
             </div>
             
+            <div class="insight-card">
+                <div class="insight-title">
+                    <i class="fas fa-lightbulb"></i> 為什麼你的投資總是少了點「爆發力」？
+                </div>
+                <div class="insight-text">
+                    <p style="margin-bottom: 15px;">
+                        傳統的 Buy & Hold（灰線）是隨波逐流；你剛拿到的進階版（藍線）做到了「趨勢濾網」，這很好。但它們都有一個物理限制：<strong>只能賺取 1 倍的市場報酬。</strong>
+                    </p>
+                    
+                    <p style="margin-bottom: 15px;">
+                        白銀實戰室的 <span class="highlight">金色線 (LRS策略)</span> 打破了這個限制。
+                    </p>
+                    
+                    <p>
+                        我們在趨勢確認時開啟「動能槓桿」，這不是賭博，這是利用數學進行的「渦輪增壓」。
+                        <br><br>
+                        <strong>👇 數據會說話，請見證「指數爆擊」的威力：</strong>
+                    </p>
+                </div>
+            </div>
+
             <div class="chart-card">
                 <div class="chart-container">
                     <canvas id="performanceChart"></canvas>
@@ -318,7 +375,7 @@
     <script>
         const ctx = document.getElementById('performanceChart').getContext('2d');
 
-        // 建立漸層色 (讓圖表看起來很高級)
+        // 建立漸層色
         let gradientGold = ctx.createLinearGradient(0, 0, 0, 400);
         gradientGold.addColorStop(0, 'rgba(255, 193, 7, 0.4)');
         gradientGold.addColorStop(1, 'rgba(255, 193, 7, 0.0)');
@@ -366,7 +423,7 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { display: false } // 我們自己做了漂亮的圖例，所以隱藏原本的
+                    legend: { display: false }
                 },
                 scales: {
                     x: { grid: { display: false } },
