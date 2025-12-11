@@ -4,57 +4,281 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>進階策略解鎖 | 倉鼠量化實戰室</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. 全局設定 --- */
+        :root {
+            --primary: #00bfa5; /* 類似你官網的青色 */
+            --primary-dark: #009688;
+            --secondary: #2c3e50;
+            --gold: #ffc107;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-light);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 導航列模擬 (讓它看起來像你的官網) */
+        .navbar {
+            background: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-weight: 700; font-size: 1.2rem; color: #333; display: flex; align-items: center; gap: 8px; }
+        .logo span { font-size: 1.5rem; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 2. Hero 區塊 (標題區) --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+        }
+
+        .badge {
+            background: rgba(0, 191, 165, 0.1);
+            color: var(--primary-dark);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0 0 20px 0;
+            color: #222;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* 按鈕美化 */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 主按鈕：青色漸層 */
+        .btn-primary {
+            background: linear-gradient(135deg, #00E5FF 0%, #00bfa5 100%);
+            color: white;
+            box-shadow: 0 8px 15px rgba(0, 191, 165, 0.3);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(0, 191, 165, 0.4);
+        }
+
+        /* 次要按鈕：白色 */
+        .btn-secondary {
+            background: white;
+            color: #555;
+            border: 2px solid #eee;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* --- 3. 圖表區塊 --- */
+        .chart-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .chart-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow-lg); /* 立體感來源 */
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+
+        .legend-item h4 { margin: 0 0 5px 0; font-size: 1rem; }
+        .legend-item p { margin: 0; font-size: 0.85rem; color: #888; }
+        
+        .text-blue { color: var(--primary); }
+        .text-gold { color: var(--gold); }
+        .text-gray { color: #999; }
+
+        /* --- 4. 銷售卡片區 --- */
+        .pricing-section {
+            padding: 0 0 100px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        .card.silver {
+            border: 2px solid var(--gold); /* 白銀會員加金框 */
+            background: linear-gradient(to bottom, #fff, #fffcf0);
+        }
+
+        .tag-popular {
+            position: absolute;
+            top: -15px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+        }
+
+        .price { font-size: 1.5rem; font-weight: bold; margin: 15px 0; }
+        .features { list-style: none; padding: 0; margin: 25px 0; text-align: left; }
+        .features li { margin-bottom: 12px; color: #555; display: flex; align-items: center; gap: 10px; }
+        .features i { color: var(--primary); }
+        
+        .btn-full { width: 100%; text-align: center; justify-content: center; }
+        .btn-gold { background: var(--gold); color: #000; box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3); }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4); }
+
+        /* RWD 適應手機 */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .chart-container { height: 300px; }
+            .card { padding: 30px 20px; }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="hero-section">
+    <nav class="navbar">
+        <div class="logo">
+            <span>🐹</span> 倉鼠量化實戰室
+        </div>
+    </nav>
+
+    <header class="hero">
         <div class="container">
-            <div class="badge">🎉 任務完成</div>
-            <h1>恭喜！您的進階策略參數已解鎖</h1>
-            <p class="subtitle">感謝您的回饋。這是依照您的需求，優化過的「景氣對策信號」進階設定。</p>
+            <span class="badge">🎉 任務完成：進階策略已解鎖</span>
+            <h1>恭喜！這是屬於你的數據武器</h1>
+            <p class="subtitle">感謝您的回饋。系統已根據您的投資屬性，生成了這份「景氣對策信號」進階參數。</p>
             
-            <div class="download-buttons">
-                <a href="#" class="btn btn-primary glow-effect">
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">
                     <i class="fas fa-file-download"></i> 下載進階參數 (PDF)
                 </a>
                 <a href="#" class="btn btn-secondary">
-                    <i class="fas fa-play-circle"></i> 觀看實戰教學影片
+                    <i class="fas fa-play-circle"></i> 觀看教學影片
                 </a>
             </div>
-            <p class="note">*建議使用電腦開啟以獲得最佳閱讀體驗</p>
         </div>
     </header>
 
     <section class="chart-section">
         <div class="container">
-            <div class="section-title">
-                <h2>✋ 下載完先別急著走...</h2>
-                <p>您知道手中的策略，其實還能再進化嗎？</p>
+            <div style="margin-bottom: 30px;">
+                <h2 style="font-size: 2rem; margin-bottom: 10px;">下載完先別急著走...</h2>
+                <p style="color: #666;">你知道這條藍線，其實還能進化成金線嗎？</p>
             </div>
             
-            <div class="chart-card-container">
-                <canvas id="performanceChart"></canvas>
-            </div>
-
-            <div class="chart-legend-box">
-                <div class="legend-item gray">
-                    <span class="dot"></span>
-                    <strong>灰色線 (0050)</strong>
-                    <p>隨波逐流，雖穩但慢</p>
+            <div class="chart-card">
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
                 </div>
-                <div class="legend-item blue">
-                    <span class="dot"></span>
-                    <strong>藍色線 (進階版)</strong>
-                    <p>您剛拿到的策略，避開衰退，戰勝大盤</p>
-                </div>
-                <div class="legend-item gold">
-                    <span class="dot"></span>
-                    <strong>金色線 (LRS實戰)</strong>
-                    <p>白銀會員核心武器，動能+槓桿的指數爆擊</p>
+                
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <h4 class="text-gray">● 灰色線 (0050)</h4>
+                        <p>大盤績效，隨波逐流</p>
+                    </div>
+                    <div class="legend-item">
+                        <h4 class="text-blue">● 藍色線 (進階版)</h4>
+                        <p>避開衰退，戰勝大盤 (您獲得的)</p>
+                    </div>
+                    <div class="legend-item">
+                        <h4 class="text-gold">● 金色線 (LRS實戰)</h4>
+                        <p>白銀會員核心武器，指數爆擊</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,96 +286,78 @@
 
     <section class="pricing-section">
         <div class="container">
-            <h3>選擇適合您的進化路徑</h3>
-            <div class="pricing-grid">
-                
-                <div class="card bronze">
-                    <div class="card-header">
-                        <h4>青銅小倉鼠</h4>
-                        <span class="tag">打底專用</span>
-                    </div>
-                    <div class="price">☕ 一杯咖啡錢</div>
-                    <p class="desc">"我想學更深，但我還不敢開槓桿，我想先懂原理。"</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>☕ 青銅小倉鼠</h3>
+                    <div class="price">NT$ 99 / 月</div>
+                    <p style="color:#888; font-size: 0.9rem;">"我想學更深，但我還不敢開槓桿"</p>
                     <ul class="features">
                         <li><i class="fas fa-check"></i> 槓桿 ETF 基礎知識</li>
                         <li><i class="fas fa-check"></i> 風險控管心法</li>
                         <li><i class="fas fa-check"></i> 實戰影片搶先看</li>
                     </ul>
-                    <a href="#" class="btn btn-outline">加入青銅會員</a>
+                    <a href="#" class="btn btn-secondary btn-full">加入青銅會員</a>
                 </div>
 
-                <div class="card silver box-highlight">
-                    <div class="popular-tag">鼠叔推薦</div>
-                    <div class="card-header">
-                        <h4>白銀實戰室</h4>
-                        <span class="tag">核心武器</span>
-                    </div>
-                    <div class="price">🚀 複製頂級策略</div>
-                    <p class="desc">"我不缺時間，我缺的是一套經過驗證、能直接複製的策略。"</p>
+                <div class="card silver">
+                    <div class="tag-popular">鼠叔推薦</div>
+                    <h3>🚀 白銀實戰室</h3>
+                    <div class="price text-gold">NT$ 499 / 月</div>
+                    <p style="color:#888; font-size: 0.9rem;">"我不缺時間，我缺的是一套頂級策略"</p>
                     <ul class="features">
-                        <li><i class="fas fa-check"></i> <strong>解鎖 LRS 完整策略 (金線)</strong></li>
-                        <li><i class="fas fa-check"></i> 每月實戰參數更新</li>
-                        <li><i class="fas fa-check"></i> 專屬會員討論區</li>
+                        <li><i class="fas fa-check" style="color:var(--gold)"></i> <strong>解鎖 LRS 完整策略 (金線)</strong></li>
+                        <li><i class="fas fa-check" style="color:var(--gold)"></i> 每月實戰參數更新</li>
+                        <li><i class="fas fa-check" style="color:var(--gold)"></i> 專屬會員討論區</li>
                     </ul>
-                    <a href="#" class="btn btn-gradient">立即升級白銀會員</a>
+                    <a href="#" class="btn btn-primary btn-full btn-gold">立即升級白銀會員</a>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 倉鼠量化實戰室 Hamster Quant Lab. All Rights Reserved.</p>
-    </footer>
-
     <script>
         const ctx = document.getElementById('performanceChart').getContext('2d');
-        
-        // 漸層設定
-        let goldGradient = ctx.createLinearGradient(0, 0, 0, 400);
-        goldGradient.addColorStop(0, 'rgba(255, 170, 0, 0.4)'); 
-        goldGradient.addColorStop(1, 'rgba(255, 170, 0, 0.05)');
 
-        let blueGradient = ctx.createLinearGradient(0, 0, 0, 400);
-        blueGradient.addColorStop(0, 'rgba(0, 194, 255, 0.3)');
-        blueGradient.addColorStop(1, 'rgba(0, 194, 255, 0.05)');
+        // 建立漸層色 (讓圖表看起來很高級)
+        let gradientGold = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientGold.addColorStop(0, 'rgba(255, 193, 7, 0.4)');
+        gradientGold.addColorStop(1, 'rgba(255, 193, 7, 0.0)');
 
-        const performanceChart = new Chart(ctx, {
+        let gradientBlue = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientBlue.addColorStop(0, 'rgba(0, 191, 165, 0.3)');
+        gradientBlue.addColorStop(1, 'rgba(0, 191, 165, 0.0)');
+
+        new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
                 datasets: [
                     {
-                        label: 'LRS 白銀策略 (金色)',
-                        data: [100, 140, 180, 250, 230, 320, 450],
-                        borderColor: '#ffaa00', // 更深一點的金色
-                        backgroundColor: goldGradient,
+                        label: 'LRS 白銀策略',
+                        data: [100, 150, 220, 200, 350, 480],
+                        borderColor: '#ffc107',
+                        backgroundColor: gradientGold,
                         borderWidth: 4,
-                        tension: 0.4,
                         fill: true,
-                        pointBackgroundColor: '#fff',
-                        pointBorderColor: '#ffaa00',
-                        pointHoverRadius: 8
+                        tension: 0.4
                     },
                     {
-                        label: '進階策略 (藍色)',
-                        data: [100, 115, 130, 160, 155, 190, 220],
-                        borderColor: '#00c2ff', // 品牌青藍色
-                        backgroundColor: blueGradient,
+                        label: '進階策略 (藍)',
+                        data: [100, 120, 160, 150, 200, 260],
+                        borderColor: '#00bfa5',
+                        backgroundColor: gradientBlue,
                         borderWidth: 3,
-                        tension: 0.4,
                         fill: true,
-                        pointBackgroundColor: '#fff',
-                        pointBorderColor: '#00c2ff'
+                        tension: 0.4
                     },
                     {
-                        label: '0050 Buy&Hold (灰色)',
-                        data: [100, 110, 125, 145, 110, 135, 160],
-                        borderColor: '#adb5bd', // 淺灰色
+                        label: '0050 Buy&Hold',
+                        data: [100, 130, 150, 110, 140, 170],
+                        borderColor: '#ccc',
                         borderWidth: 2,
                         borderDash: [5, 5],
-                        tension: 0.4,
                         fill: false,
+                        tension: 0.4,
                         pointRadius: 0
                     }
                 ]
@@ -160,31 +366,11 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        mode: 'index',
-                        intersect: false,
-                        backgroundColor: 'rgba(255,255,255,0.9)',
-                        titleColor: '#333',
-                        bodyColor: '#333',
-                        borderColor: '#ddd',
-                        borderWidth: 1
-                    }
+                    legend: { display: false } // 我們自己做了漂亮的圖例，所以隱藏原本的
                 },
                 scales: {
-                    x: { 
-                        grid: { color: 'rgba(0,0,0,0.05)' }, 
-                        ticks: { color: '#6c757d', font: {family: "'Noto Sans TC', sans-serif"} } 
-                    },
-                    y: { 
-                        grid: { color: 'rgba(0,0,0,0.05)' }, 
-                        ticks: { color: '#6c757d', font: {family: "'Noto Sans TC', sans-serif"} } 
-                    }
-                },
-                interaction: {
-                    mode: 'nearest',
-                    axis: 'x',
-                    intersect: false
+                    x: { grid: { display: false } },
+                    y: { grid: { color: '#f0f0f0' } }
                 }
             }
         });
