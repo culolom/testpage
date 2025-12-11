@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>進階策略解鎖 | 倉鼠量化實戰室</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="badge">🎉 任務完成</div>
+            <h1>恭喜！您的進階策略參數已解鎖</h1>
+            <p class="subtitle">感謝您的回饋。這是依照您的需求，優化過的「景氣對策信號」進階設定。</p>
+            
+            <div class="download-buttons">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-file-download"></i> 下載進階參數 (PDF)
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <i class="fas fa-play-circle"></i> 觀看實戰教學影片
+                </a>
+            </div>
+            <p class="note">*建議使用電腦開啟以獲得最佳閱讀體驗</p>
+        </div>
+    </header>
+
+    <section class="chart-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>✋ 下載完先別急著走...</h2>
+                <p>您知道手中的策略，其實還能再進化嗎？</p>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+
+            <div class="chart-legend-box">
+                <div class="legend-item gray">
+                    <span class="dot"></span>
+                    <strong>灰色線 (0050)</strong>
+                    <p>隨波逐流，雖穩但慢</p>
+                </div>
+                <div class="legend-item blue">
+                    <span class="dot"></span>
+                    <strong>藍色線 (進階版)</strong>
+                    <p>您剛拿到的策略，避開衰退，戰勝大盤</p>
+                </div>
+                <div class="legend-item gold">
+                    <span class="dot"></span>
+                    <strong>金色線 (LRS實戰)</strong>
+                    <p>白銀會員核心武器，動能+槓桿的指數爆擊</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="container">
+            <h3>選擇適合您的進化路徑</h3>
+            <div class="pricing-grid">
+                
+                <div class="card bronze">
+                    <div class="card-header">
+                        <h4>青銅小倉鼠</h4>
+                        <span class="tag">打底專用</span>
+                    </div>
+                    <div class="price">☕ 一杯咖啡錢</div>
+                    <p class="desc">"我想學更深，但我還不敢開槓桿，我想先懂原理。"</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> 槓桿 ETF 基礎知識</li>
+                        <li><i class="fas fa-check"></i> 風險控管心法</li>
+                        <li><i class="fas fa-check"></i> 實戰影片搶先看</li>
+                    </ul>
+                    <a href="[你的青銅會員連結]" class="btn btn-outline">加入青銅會員</a>
+                </div>
+
+                <div class="card silver">
+                    <div class="popular-tag">鼠叔推薦</div>
+                    <div class="card-header">
+                        <h4>白銀實戰室</h4>
+                        <span class="tag">核心武器</span>
+                    </div>
+                    <div class="price">🚀 複製頂級策略</div>
+                    <p class="desc">"我不缺時間，我缺的是一套經過驗證、能直接複製的策略。"</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> <strong>解鎖 LRS 完整策略 (金線)</strong></li>
+                        <li><i class="fas fa-check"></i> 每月實戰參數更新</li>
+                        <li><i class="fas fa-check"></i> 專屬會員討論區</li>
+                    </ul>
+                    <a href="[你的白銀會員連結]" class="btn btn-glow">立即升級白銀會員</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 倉鼠量化實戰室 Hamster Quant Lab. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        const performanceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [
+                    {
+                        label: 'LRS 白銀策略 (金色)',
+                        data: [100, 140, 180, 250, 230, 320, 450], // 模擬數據
+                        borderColor: '#FFD700',
+                        backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: '進階策略 (藍色)',
+                        data: [100, 115, 130, 160, 155, 190, 220], // 模擬數據
+                        borderColor: '#00C2FF',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: false
+                    },
+                    {
+                        label: '0050 Buy&Hold (灰色)',
+                        data: [100, 110, 125, 145, 110, 135, 160], // 模擬數據
+                        borderColor: '#888888',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        tension: 0.4,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false } // 我們自己寫了漂亮的 Legend
+                },
+                scales: {
+                    x: { grid: { color: '#333' }, ticks: { color: '#888' } },
+                    y: { grid: { color: '#333' }, ticks: { color: '#888' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
